@@ -11,7 +11,7 @@ $config = [
             'roots' => [
                 [
                     'baseUrl' => '@storageUrl',
-                    'basePath' => '@storage',
+                    'basePath' => '@storage/web',
                     'path'   => '/',
                     'access' => ['read' => 'manager', 'write' => 'manager']
                 ]
