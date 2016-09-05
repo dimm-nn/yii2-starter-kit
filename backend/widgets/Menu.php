@@ -83,4 +83,23 @@ class Menu extends \yii\widgets\Menu
             ]);
         }
     }
+
+    protected function isItemActive($item)
+    {
+        $active = parent::isItemActive($item);
+        if (!$active && isset($item['url']) && $item['url'] !== '#' && isset($item['url'][0]))
+        {
+            $item_url = $item['url'][0];
+            $action_index = '/index';
+            if (substr($item_url, -1*strlen($action_index)) === $action_index)
+            {
+                $common_route = ltrim(substr($item_url, 0, strlen($item_url) - strlen($action_index)), '/');
+                if (strpos($this->route, $common_route) === 0)
+                {
+                    return true;
+                }
+            }
+        }
+        return $active;
+    }
 }
